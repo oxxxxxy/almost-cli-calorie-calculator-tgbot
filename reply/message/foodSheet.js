@@ -1,12 +1,15 @@
 const telegraf = require(`telegraf`);
 
-const {makeUserFoodSheetMessageText} = require(`./text/index/foodSheet.js`);
+const {
+	makeUserFoodSheetMessageText
+	,getCommandBlock_dishProcessText
+} = require(`./text/index/foodSheet.js`);
 const {
 	getCountOfPages
 	,getPagingForNButtonsOfPagingInlineKeyboardLine
 	,getNButtonsForPagingInlineKeyboardLine
 	,makePagingInlineKeyboardLine
-} = require(`./reply_markup/inlineKeyboard.js`);
+} = require(`./reply_markup/inlineKeyboard/utils/inlineKeyboard.js`);
 
 const getUserFoodSheetMessagePanel = (language_code, dataPart, foodList, countOfAllRows, bjukMoreLessCondition, bjukAscDescSorting, selectedPage = 1) => {
 	const maxNumberOfLines = 20;
@@ -34,3 +37,7 @@ const getUserFoodSheetMessagePanel = (language_code, dataPart, foodList, countOf
 
 }; 
 exports.getUserFoodSheetMessagePanel = getUserFoodSheetMessagePanel;
+
+const getCommandBlock_dishProcessMessage = (languageCode) => 
+	getCommandBlock_dishProcessText(languageCode);
+exports.getCommandBlock_dishProcessMessage = getCommandBlock_dishProcessMessage;
